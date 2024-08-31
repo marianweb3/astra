@@ -6,27 +6,27 @@ const ThemeToggle = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
-    if (
-      localStorage.theme === "dark" ||
-      (!("theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
-    ) {
-      setIsDarkMode(true);
-      document.documentElement.classList.add("dark");
-    } else {
-      setIsDarkMode(false);
-      document.documentElement.classList.remove("dark");
-    }
+    // if (
+    //   localStorage.theme === "dark" ||
+    //   (!("theme" in localStorage) &&
+    //     window.matchMedia("(prefers-color-scheme: dark)").matches)
+    // ) {
+    //   setIsDarkMode(true);
+    //   document.documentElement.classList.add("dark");
+    // } else {
+    //   setIsDarkMode(false);
+    //   document.documentElement.classList.remove("dark");
+    // }
   }, []);
 
   const toggleDarkMode = () => {
-    if (isDarkMode) {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    } else {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    }
+    // if (isDarkMode) {
+    //   document.documentElement.classList.remove("dark");
+    //   localStorage.setItem("theme", "light");
+    // } else {
+    //   document.documentElement.classList.add("dark");
+    //   localStorage.setItem("theme", "dark");
+    // }
     setIsDarkMode(!isDarkMode);
   };
 
@@ -37,9 +37,9 @@ const ThemeToggle = () => {
     >
       <motion.div
         className={`flex items-center justify-center w-6 h-6 bg-white dark:bg-black rounded-full`}
-        animate={
-          window.innerWidth >= 640 ? { x: isDarkMode ? 22 : 0 } : undefined
-        }
+        // animate={
+        //   window.innerWidth >= 640 ? { x: isDarkMode ? 22 : 0 } : undefined
+        // }
         transition={{ type: "spring", stiffness: 700, damping: 30 }}
       >
         {isDarkMode ? <Moon color="#FFF" size={14} /> : <Sun size={14} />}
