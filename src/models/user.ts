@@ -14,12 +14,6 @@ const userSchema = new Schema({
         type: String,
         required: [true, "Password is required"],
         select: false
-    },
-    fullname: {
-        type: String,
-        required: [true, "Fullname is required"],
-        minLength: [3, "Fullname must be at least 3 characters long"],
-        maxLength: [50, "Fullname must be at most 50 characters long"]
     }
 });
 

@@ -1,12 +1,13 @@
 import { NextResponse } from 'next/server';
-import User from '@/models/user'
+import User from '@/models/user';
+import Wallet from '@/models/wallet';
 import { connectDB } from "@/libs/mongodb";
 import bcrypt from "bcryptjs";
+import { createAddress } from '@/wallets/westwallet';
 
 export async function POST(request: Request) {
 
-    const { fullname, email, password } = await request.json();
-    console.log(fullname, email, password);
+    const { email, password } = await request.json();
 
     if (!password || password.length < 6) return NextResponse.json({ message: 'Password must be at least 6 characters' }, { status: 400 });
 
@@ -19,10 +20,15 @@ export async function POST(request: Request) {
 
         const hashedPassword = await bcrypt.hash(password, 12);
 
-        const user = new User({ fullname, email, password: hashedPassword });
+        const user = new User({ email, password: hashedPassword });
 
         const savedUser = await user.save();
-        console.log(savedUser);
+       
+        const usdcerc = await createAddress(email);
+
+        const wallet = new Wallet({ user:  savedUser._id, address: usdcerc.address, name: "Tether", network: "erc" });
+
+        await wallet.save();
 
         return NextResponse.json({
             _id: savedUser._id,
@@ -30,7 +36,7 @@ export async function POST(request: Request) {
             fullname: savedUser.fullname,
         });
     } catch (error) {
-        console.log(error);
+
         if (error instanceof Error) {
             return NextResponse.json(
                 {

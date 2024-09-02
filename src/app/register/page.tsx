@@ -15,7 +15,6 @@ function RegisterPage() {
     e.preventDefault();
 
     const formData = new FormData(e.currentTarget);
-    const fullname = formData.get("fullname");
     const email = formData.get("email");
     const password = formData.get("password");
 
@@ -23,7 +22,6 @@ function RegisterPage() {
     try {
       const signupResponse = await axios
       .post("/api/auth/signup", {
-        fullname,
         email,
         password,
       })
@@ -60,12 +58,6 @@ function RegisterPage() {
 
         <h1 className="text-4xl font-bold mb-7">Signup</h1>
 
-        <input
-          type="text"
-          placeholder="John Doe"
-          name="fullname"
-          className="bg-zinc-800 px-4 py-2 block mb-2 w-full"
-        />
         <input
           type="email"
           placeholder="somemail@gmaail.com"

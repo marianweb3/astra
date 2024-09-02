@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
+import { getBalance, createAddress } from "../../../wallets/westwallet";
 
 export async function GET() {
 
-    const balance = await getBalance("0xFF8AF0265130225F405eFeC650bCc8E217bBE7a3");
+    const balance = await getBalance();
     return NextResponse.json({ balance: balance });
 
 }
