@@ -1,6 +1,7 @@
 "use client";
 import { QrCode } from "lucide-react";
 import clsx from "clsx";
+import { useWeb3Modal } from '@web3modal/ethers/react';
 
 type ActionButtonsProps = {
   onConnectWalletClick?: () => void;
@@ -17,6 +18,9 @@ const ActionButtons = ({
   learnMoreText = "Learn More",
   className,
 }: ActionButtonsProps) => {
+
+  const { open } = useWeb3Modal()
+
   return (
     <div
       className={clsx(
@@ -25,7 +29,7 @@ const ActionButtons = ({
       )}
     >
       <button
-        onClick={onConnectWalletClick}
+        onClick={()=>{ open(); }}
         className="bg-[#3148F2] whitespace-nowrap rounded-full py-[10.5px] md:py-5 px-5 md:px-7 flex items-center gap-3 border border-[#3148F2] text-white transition-colors duration-300 group ease-in-out hover:bg-transparent hover:border-[#3148F2]"
       >
         <span className="font-inter font-semibold text-[14px] leading-[16.94px] md:text-[20px] md:leading-[24.2px] transition-colors duration-300 ease-in-out group-hover:text-[#3148F2]">

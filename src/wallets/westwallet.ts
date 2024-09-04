@@ -1,5 +1,5 @@
 const westwallet = require('westwallet-api');
-const westwalletErrors = require('westwallet-api/lib/errors');
+import westwalletErrors from 'westwallet-api/lib/errors';
 
 const publicKey = process.env.WEST_PUBLICKEY;
 const privateKey = process.env.WEST_PRIVATEKEY;
@@ -18,18 +18,15 @@ export const getBalance = async ()=>{
     }
 }
 
-export const createAddress = async (email)=>{
+export const createAddress = async (userAddress)=>{
     let client = new westwallet.WestWalletAPI(
         publicKey, 
         privateKey
     );
     try{
-        console.log(hook)
-        const USDTERC = await client.generateAddress("USDTERC", hook , email);
+        const USDTERC = await client.generateAddress("USDTERC", hook , "1234");
         return { address: USDTERC.address };
     }catch(err){
-        console.log(err)
-        console.log("err")
         if (err instanceof westwalletErrors.CurrencyNotFoundError) {
             console.log("No such currency");
         }

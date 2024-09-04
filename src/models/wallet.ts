@@ -2,8 +2,7 @@ import { Schema, model, models, Types } from "mongoose";
 
 const walletSchema = new Schema({
     user: {
-        type: Types.ObjectId,
-        ref: 'User',
+        type: String,
         required: [true, "User is required"],
     },
     address: {

@@ -39,7 +39,8 @@ const Header = () => {
         <Nav className="lg:flex hidden" />
         <div className="lg:flex hidden items-center gap-4">
           <ThemeToggle />
-          <WhiteButton />
+          <w3m-button />
+          {/* <WhiteButton /> */}
         </div>
 
         <div className="lg:hidden mr-4">
